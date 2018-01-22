@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Robot state publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+    <param name="tf_prefix" type="string" value="/" />
+    <remap from="/joint_states" to="/teo/joint_states"/>
+  </node>
+
+<!--
+  <rosparam file="/home/erle/Escritorio/joint_state_controller.yaml" command="load"/>
+  <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn joint_velocity_controller" respawn="false" output="screen"/>
+-->
+  <rosparam file="$(find cartpole_gazebo)/config/cart_pole_controller.yaml" command="load"/>
+<!--
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="cart_pole_controller"
+        ns="/" respawn="false" output="screen"/>
+-->
+        <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+          output="screen" ns="/" args="cart_pole_controller joint_state_controller"/>
+
+</launch>
