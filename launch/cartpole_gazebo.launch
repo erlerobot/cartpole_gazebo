@@ -24,12 +24,4 @@
 
   <include file="$(find cartpole_gazebo)/launch/controller_utils.launch"/>
 
-  <!-- joint_state_controller -->
-  <rosparam file="$(find cartpole_gazebo)/config/joint_state_controller.yaml" command="load"/>
-<!--
-  <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn joint_state_controller" respawn="false" output="screen"/>
-  <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn joint_state_controller" respawn="false" output="screen"/>
--->
-
-
 </launch>
